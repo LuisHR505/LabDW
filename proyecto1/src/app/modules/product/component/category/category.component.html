@@ -1,0 +1,35 @@
+<div class="body-content">
+    <div class="card">
+      <div class="card-header">
+        <h4>Categorias</h4>
+      </div>
+      <div class="card-body">
+        <table class="table table-striped">
+          <thead>
+            <tr class="table-primary">
+              <th scope="col">Id</th>
+              <th scope="col">Categoria</th>
+              <th scope="col">Tag</th>
+              <th scope="col">Estatus</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for(category of categories; track category.category_id; let i = $index ) {
+                <tr>
+                    <td>{{category.category_id }}</td>
+                    <td>{{category.category }}</td>
+                    <td>{{category.tag }}</td>
+                    <td>{{category.status }}</td>
+                </tr>
+            }
+            
+          </tbody>
+        </table>
+      </div>
+      <div class="card-footer">
+        <small>18 de septiembre de 2024 - 10:35:05 pm</small>
+      </div>
+    </div>
+  </div>
+
+
