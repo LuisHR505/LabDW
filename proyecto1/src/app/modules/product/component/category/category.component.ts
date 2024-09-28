@@ -20,16 +20,11 @@ export class CategoryComponent {
 
   categories: Category[] = [];
   swal: SwalMessages = new SwalMessages();  
-  //form: any;
   form: FormGroup;
-  //submitted = false;
-  submitted = false; // form submitted
+  
+  submitted = false; 
 
   constructor(private categoryService: CategoryService, private formBuilder: FormBuilder) {    
-    //this.form = this.formBuilder.group({
-      //category : ["", Validators.required],
-      //tag: ["", Validators.required]
-    //}; 
     this.form = this.formBuilder.group({
       categoria: ["", [Validators.required]],
       tag: ["", [Validators.required]],
@@ -46,9 +41,6 @@ export class CategoryComponent {
 
   ngOnInit(): void {
     this.getCategories();
-    // $(document).ready(() => {
-    //   console.log("jQuery está funcionando");
-    // });
   }
   getCategories(): void {
     this.categories = this.categoryService.getCategories();

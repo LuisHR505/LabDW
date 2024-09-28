@@ -47,17 +47,17 @@
               <form  [formGroup]="form"  (ngSubmit)="onSubmit()">
                 <div class="mb-3">
                   <label for="region" class="form-label">Categoria <span class="input-required">*</span></label>
-                  <input type="text" class="form-control" formControlName="categoria" placeholder="Nombre de la región" [ngClass]="{'is-invalid': form.controls['categoria'].errors && submitted}">
+                  <input type="text" class="form-control" formControlName="categoria" placeholder="Nombre de la categoria" [ngClass]="{'is-invalid': form.controls['categoria'].errors && submitted}">
                   @if (form.controls['categoria'].errors && submitted) {
-                    <small class="input-error-message">Favor de ingresar un nombre de región válido</small>
+                    <small class="input-error-message">Favor de ingresar un nombre de categoria válido</small>
                   }
                
                 </div>
                 <div class="mb-3">
                   <label for="tag" class="form-label">Tag <span class="input-required">*</span></label>
-                  <input type="text" class="form-control" formControlName="tag" placeholder="Código de la región" [ngClass]="{'is-invalid': form.controls['tag'].errors && submitted}">
+                  <input type="text" class="form-control" formControlName="tag" placeholder="Código de la categoria" [ngClass]="{'is-invalid': form.controls['tag'].errors && submitted}">
                   @if (form.controls['tag'].errors && submitted) {
-                    <small class="input-error-message">Favor de ingresar un código de región válido</small>
+                    <small class="input-error-message">Favor de ingresar un codigo de categoria válido</small>
                   }
                
                 </div>
