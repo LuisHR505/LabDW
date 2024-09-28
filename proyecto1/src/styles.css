@@ -12,6 +12,19 @@
   margin: auto;
 }
 
+.form-button{
+  margin: 24px;
+  text-align: center;
+}
+ 
+.btn-save{
+  width: 240px;
+}
+.input-error-message{
+  color: red;
+  margin: 4px;
+}
+
 /*ayudita de bootswatch*/
 /*!
  * Bootswatch v5.3.3 (https://bootswatch.com)
