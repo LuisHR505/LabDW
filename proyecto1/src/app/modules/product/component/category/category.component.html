@@ -2,7 +2,16 @@
     <div class="card">
       <div class="card-header">
         <h4>Categorias</h4>
+        <!-- boton -->
+        <div class="row">
+          <div class="col">
+            <button type="button" class="btn btn-primary btn-new" (click)="showModalForm()">
+              Nueva categoria
+            </button>
+          </div>
+        </div>
       </div>
+      <!-- tabla -->
       <div class="card-body">
         <table class="table table-striped">
           <thead>
@@ -22,9 +31,43 @@
                     <td>{{category.status }}</td>
                 </tr>
             }
-            
           </tbody>
         </table>
+      </div>
+      <!-- modal -->
+      <div class="modal fade" tabindex="-1" data-bs-backdrop="static" id="modalForm">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Ingresar datos</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <!-- formulario -->
+              <form  [formGroup]="form"  (ngSubmit)="onSubmit()">
+                <div class="mb-3">
+                  <label for="region" class="form-label">Categoria <span class="input-required">*</span></label>
+                  <input type="text" class="form-control" formControlName="categoria" placeholder="Nombre de la categoria" [ngClass]="{'is-invalid': form.controls['categoria'].errors && submitted}">
+                  @if (form.controls['categoria'].errors && submitted) {
+                    <small class="input-error-message">Favor de ingresar un nombre de categoria válido</small>
+                  }
+               
+                </div>
+                <div class="mb-3">
+                  <label for="tag" class="form-label">Tag <span class="input-required">*</span></label>
+                  <input type="text" class="form-control" formControlName="tag" placeholder="Código de la categoria" [ngClass]="{'is-invalid': form.controls['tag'].errors && submitted}">
+                  @if (form.controls['tag'].errors && submitted) {
+                    <small class="input-error-message">Favor de ingresar un codigo de categoria válido</small>
+                  }
+               
+                </div>
+                <div class="form-button">
+                  <button type="submit" class="btn btn-primary btn-save">Guardar</button>
+                </div>              
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="card-footer">
         <small>18 de septiembre de 2024 - 10:35:05 pm</small>
