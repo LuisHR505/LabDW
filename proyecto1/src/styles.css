@@ -2,6 +2,7 @@
 @charset "UTF-8";
 /*Estilo sobre-escrito por mi*/
 .body-content{
+  padding-top: 70px;
   max-width: 1280px;
   margin: auto;
   margin-top: 16px;
@@ -23,6 +24,26 @@
 .input-error-message{
   color: red;
   margin: 4px;
+}
+
+/* agregado en practica 7 */
+.input-required{
+  color: red;
+}
+.input-error-message{
+  color: red;
+  margin: 4px;
+}
+
+/* images  */
+
+.img-loading{
+  width: 100px;
+  height: 100px;
+}
+
+.table-empty{
+  padding: 24px;
 }
 
 /*ayudita de bootswatch*/

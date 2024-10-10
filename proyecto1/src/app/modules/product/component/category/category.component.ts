@@ -3,8 +3,8 @@ import { CategoryService } from '../../_service/category.service';
 import { Category } from '../../_model/category';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormBuilder, Validators } from '@angular/forms';
-import { SharedModule, SwalMessages } from '../../../../shared/shared-module';
-
+import { SharedModule } from '../../../../shared/shared-module';
+import { SwalMessages } from '../../../../shared/swal-messages';
 
 //Declarar variable global de jquery
 declare var $: any;
