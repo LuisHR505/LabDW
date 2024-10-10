@@ -53,7 +53,7 @@ export class CategoryComponent {
     let id = this.categories.length + 1;
     let categoria = new Category(id, this.form.controls['categoria'].value!, this.form.controls['tag'].value!, 1);
     this.categories.push(categoria);
-    this.swal.successMessage("La región ha sido registrada");
+    this.swal.successMessage("La categoria ha sido registrada");
     this.hideModalForm();
 
   }
