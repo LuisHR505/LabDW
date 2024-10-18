@@ -11,11 +11,11 @@ import { CategoryComponent } from './modules/product/component/category/category
 export const routes: Routes = [
     {
         path: '',
-        redirectTo: '/categoria',
+        redirectTo: '/category',
         pathMatch: 'full'
     },
     {
-        path: 'categoria',
+        path: 'category',
         component: CategoryComponent
     },
     {

@@ -46,9 +46,9 @@
               <!-- formulario -->
               <form  [formGroup]="form"  (ngSubmit)="onSubmit()">
                 <div class="mb-3">
-                  <label for="region" class="form-label">Categoria <span class="input-required">*</span></label>
-                  <input type="text" class="form-control" formControlName="categoria" placeholder="Nombre de la categoria" [ngClass]="{'is-invalid': form.controls['categoria'].errors && submitted}">
-                  @if (form.controls['categoria'].errors && submitted) {
+                  <label for="category" class="form-label">Categoria <span class="input-required">*</span></label>
+                  <input type="text" class="form-control" formControlName="category" placeholder="Nombre de la categoria" [ngClass]="{'is-invalid': form.controls['category'].errors && submitted}">
+                  @if (form.controls['category'].errors && submitted) {
                     <small class="input-error-message">Favor de ingresar un nombre de categoria válido</small>
                   }
                

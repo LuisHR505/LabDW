@@ -18,16 +18,17 @@ declare var $: any;
 })
 export class CategoryComponent {
 
-  categories: any; //aqui falta un cambio revisa si esta bien 
+  categories: Category[] = []; //aqui falta un cambio revisa si esta bien 
   swal: SwalMessages = new SwalMessages();  
-  form: FormGroup;
   categoryUpdate= 0; //checar este error
-  
+  category_id=0;
   submitted = false; 
+  form: FormGroup;
+  
   //primero servicio, luego componrente luego vistas
   constructor(private categoryService: CategoryService, private formBuilder: FormBuilder) {    
     this.form = this.formBuilder.group({
-      categoria: ["", [Validators.required]],
+      category: ["", [Validators.required]],
       tag: ["", [Validators.required]],
     });
   }
@@ -58,42 +59,44 @@ export class CategoryComponent {
   }
   onSubmit(){
     this.submitted = true;
-    if(this.form.invalid) return;
+    if(this.form.invalid){ return;}
     this.submitted = false;
 
-    let id = this.categories.length + 1;
-    let categoria = new Category(id, this.form.controls['categoria'].value!, this.form.controls['tag'].value!, 1);
-    this.categories.push(categoria);
-    this.swal.successMessage("La categoria ha sido registrada");
-    this.hideModalForm();
+    // valida si se está registrando o actualizando una categoria
+    if(this.category_id== 0){
+      this.onSubmitCreate();
+    }else{
+      this.onSubmitUpdate();
+    }
 
   }
 
   onSubmitCreate(){
+    console.log(this.form.value);
     this.categoryService.createCategory(this.form.value).subscribe({
       next: (v) =>{
-        this.swal.successMessage("Se ha creado la categoria");
         this.getCategories();
-        this.hideModalForm();        
+        this.hideModalForm();
+        this.resetVariables();
+        this.swal.successMessage("Se ha creado la categoria");
+
       },
       error: (e) =>{
+        console.log(e);
         this.swal.errorMessage("No se pudo crear la categoria");
       }
       })
     }
+//auxiliar
+// aux 
 
+  resetVariables(){
+    this.form.reset();
+    this.submitted = false;
+    this.category_id = 0;
+  }
 //aqui va el onSubmitUpdate
   onSubmitUpdate(){}
 
-  // enableCategory(id:number){
-  //   this.categoryService.activateCategory(id).subscribe({
-  //     next: (v) => {
-  //       this.swal.successMessage("");
-  //     }
-  //   })
-
-  // }
-
-//SERVICIO,COMPOINENTE, HTML CSS
   
 }

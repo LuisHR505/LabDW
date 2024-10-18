@@ -1,15 +1,3 @@
-// import { Component } from '@angular/core';
-
-// @Component({
-//   selector: 'app-nav-item',
-//   standalone: true,
-//   imports: [],
-//   templateUrl: './nav-item.component.html',
-//   styleUrl: './nav-item.component.css'
-// })
-// export class NavItemComponent {
-
-// }
 import { Component, Input, OnChanges } from '@angular/core';
 import { NavService } from '../../../_service/nav.service';
 import { ActivatedRoute, Router } from '@angular/router';
