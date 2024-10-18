@@ -11,6 +11,13 @@ export class CategoryService {
   private source="/category";
 
   constructor(private http: HttpClient) { }
+  //enable y disable
+  disableCategory(id: number): Observable<any>{
+    return this.http.delete(api_dwb_uri + this.source+ "/" + id);
+  }
+  enableCategory(id: number): Observable<any>{
+    return this.http.put(api_dwb_uri + this.source+ "/" + id + "/activate", null);
+  }
   
   //Metodos GET
   getCategories(): Observable<any> { 

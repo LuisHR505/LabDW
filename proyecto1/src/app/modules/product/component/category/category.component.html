@@ -11,8 +11,100 @@
           </div>
         </div>
       </div>
-      <!-- tabla -->
       <div class="card-body">
+        <!-- hasta aqui todo bien -->
+
+        <!-- nuevos cambios -->
+
+        <!-- loading -->
+         <!-- loading  -->
+        
+        @if(loading) {
+          <div class="text-center" >
+            <img src="assets/loading.gif" class="img-loading" alt="loading">
+          </div>
+        }
+        
+        @if(!loading && categories.length == 0){
+          <div class="text-center table-empty">
+              <h4>No cuentas con regiones registradas</h4>
+          </div>
+        }@else {
+          <table class="table table-striped">
+            <thead>
+              <tr class="table-primary">
+                <th scope="col">No.</th>
+                <th scope="col">Categoria</th>
+                <th scope="col">Tag</th>
+                <th scope="col">Estatus</th>
+                <th scope="col">Más</th>
+              </tr>
+            </thead> 
+            <!-- todo bien -->
+            <tbody>
+              @for(category of categories; track category.category_id; let i = $index) {
+                  <tr>
+                      <td>{{ i + 1 }}</td>
+                      <td>{{ category.category }}</td>
+                      <td>{{ category.tag }}</td>
+                      <td>
+                          @if (category.status == 1) {
+                              {{ "Activo" }}
+                          }@else {
+                              <span class="td-status-disable">{{ "Inactivo" }}</span> 
+                          }
+                      </td> 
+                      <!-- todo bien copiado -->
+                      <td>
+                        <div class="dropdown">
+                          <!-- dots button  -->
+                          <button class="dropdown-button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="ph ph-dots-three-outline-vertical icon-menu"></i>
+                          </button>
+      
+      
+                          <!-- menu options -->
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" (click)="updateCategory(category)">
+                              <i class="ph ph-note-pencil icon-text-ul"></i>Editar
+                            </a>
+                            @if (category.status == 0) {
+                              <a class="dropdown-item enable-item" (click)="enableCategory(category.category_id)">
+                                <i class="ph ph-check-circle icon-text-ul"></i>Activar
+                              </a>
+                            }
+                            @if (category.status == 1) {
+                              <a class="dropdown-item disable-item" (click)="disableCategory(category.category_id)">
+                                <i class="ph ph-x-circle icon-text-ul"></i>Desactivar
+                              </a>
+                            }
+                          </div>
+                        </div>
+                      </td>
+                  </tr>
+              }
+              
+            </tbody>
+          </table>
+        }
+           
+        
+      </div>
+      <div class="card-footer text-end">
+        <small>{{ current_date | date: 'dd/MMM/yyyy, h:mm a' }}</small>
+      </div>
+    </div>
+  </div>
+
+
+
+
+        <!-- @if(loading) {
+          <div class="text-center" >
+            <img src="assets/loading.gif" class="img-loading" alt="">
+          </div>
+        }
+
         <table class="table table-striped">
           <thead>
             <tr class="table-primary">
@@ -20,6 +112,7 @@
               <th scope="col">Categoria</th>
               <th scope="col">Tag</th>
               <th scope="col">Estatus</th>
+              <th scope="col">Mas </th>
             </tr>
           </thead>
           <tbody>
@@ -33,7 +126,10 @@
             }
           </tbody>
         </table>
-      </div>
+      </div> -->
+
+
+      <!-- esto de aqui ya ni le muevas -->
       <!-- modal -->
       <div class="modal fade" tabindex="-1" data-bs-backdrop="static" id="modalForm">
         <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -69,10 +165,10 @@
           </div>
         </div>
       </div>
-      <div class="card-footer">
+      <!-- <div class="card-footer">
         <small>18 de septiembre de 2024 - 10:35:05 pm</small>
-      </div>
-    </div>
-  </div>
+      </div> -->
+    <!-- </div>
+  </div> -->
 
 

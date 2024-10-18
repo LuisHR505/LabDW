@@ -5,7 +5,7 @@ import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormBuilder, Validators } from '@angular/forms';
 import { SharedModule } from '../../../../shared/shared-module';
 import { SwalMessages } from '../../../../shared/swal-messages';
-
+import Swal from 'sweetalert2';
 //Declarar variable global de jquery
 declare var $: any;
 
@@ -19,11 +19,15 @@ declare var $: any;
 export class CategoryComponent {
 
   categories: Category[] = []; //aqui falta un cambio revisa si esta bien 
-  swal: SwalMessages = new SwalMessages();  
+   
   categoryUpdate= 0; //checar este error
   category_id=0;
-  submitted = false; 
+   
   form: FormGroup;
+  current_date = new Date(); // hora y fecha actual
+  loading=false;
+  submitted = false;
+  swal: SwalMessages = new SwalMessages(); 
   
   //primero servicio, luego componrente luego vistas
   constructor(private categoryService: CategoryService, private formBuilder: FormBuilder) {    
@@ -32,6 +36,55 @@ export class CategoryComponent {
       tag: ["", [Validators.required]],
     });
   }
+
+  ngOnInit(): void {
+    this.getCategories();
+  }
+
+  //enable y disable
+  
+  disableCategory(id: number){
+    this.swal.confirmMessage.fire({
+      title: "Favor de confirmar la eliminación",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.categoryService.disableCategory(id).subscribe({
+          next: (v) => {
+            this.swal.successMessage(v.message);
+            this.getCategories();
+          },
+          error: (e) => {
+            console.log(e);
+            this.swal.errorMessage(e.error.message);
+          }
+        });
+      }
+    });
+  }
+
+  
+  enableCategory(id: number){
+    this.swal.confirmMessage.fire({
+      title: "Favor de confirmar la activación",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.categoryService.enableCategory(id).subscribe({
+          next: (v) => {
+            this.swal.successMessage(v.message);
+            this.getCategories();
+          },
+          error: (e) => {
+            console.log(e);
+            this.swal.errorMessage(e.error.message);
+          }
+        });
+      }
+    });
+  }
+
+
+
+
   showModalForm(){
     this.submitted = false;
     this.form.reset();
@@ -41,18 +94,20 @@ export class CategoryComponent {
     $("#modalForm").modal("hide");
   }
 
-  ngOnInit(): void {
-    this.getCategories();
-  }
+  
   getCategories(): void {
+    this.loading = true;
     this.categoryService.getCategories().subscribe({
       next: (v) => {
         console.log(v);
         this.categories= v;
+        this.loading = false;
         console.log(this.categories)
       },
       error: (e) => {
+        this.loading = false;
         this.swal.errorMessage("No hay un listado de categorias")
+        
       }
     });
 
@@ -96,7 +151,30 @@ export class CategoryComponent {
     this.category_id = 0;
   }
 //aqui va el onSubmitUpdate
-  onSubmitUpdate(){}
+  onSubmitUpdate(){
+    this.categoryService.updateCategory(this.form.value, this.category_id).subscribe({
+      next: (v) => {
+        this.getCategories();
+        this.hideModalForm();
+        this.resetVariables();
+        this.swal.successMessage(v.message);
+      },
+      error: (e) => {
+        console.log(e);
+        this.swal.errorMessage(e.error.message);
+      }
+    });
+  }
 
+  //update category
+  updateCategory(category: Category){
+    this.resetVariables();
+    this.showModalForm();
+  
+    this.category_id = category.category_id;
+    this.form.controls['category'].setValue(category.category);
+    this.form.controls['tag'].setValue(category.tag);
+  }
   
 }
+
