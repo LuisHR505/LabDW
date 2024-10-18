@@ -18,12 +18,13 @@ declare var $: any;
 })
 export class CategoryComponent {
 
-  categories: Category[] = [];
+  categories: any; //aqui falta un cambio revisa si esta bien 
   swal: SwalMessages = new SwalMessages();  
   form: FormGroup;
+  categoryUpdate= 0; //checar este error
   
   submitted = false; 
-
+  //primero servicio, luego componrente luego vistas
   constructor(private categoryService: CategoryService, private formBuilder: FormBuilder) {    
     this.form = this.formBuilder.group({
       categoria: ["", [Validators.required]],
@@ -43,7 +44,17 @@ export class CategoryComponent {
     this.getCategories();
   }
   getCategories(): void {
-    this.categories = this.categoryService.getCategories();
+    this.categoryService.getCategories().subscribe({
+      next: (v) => {
+        console.log(v);
+        this.categories= v;
+        console.log(this.categories)
+      },
+      error: (e) => {
+        this.swal.errorMessage("No hay un listado de categorias")
+      }
+    });
+
   }
   onSubmit(){
     this.submitted = true;
@@ -58,5 +69,31 @@ export class CategoryComponent {
 
   }
 
+  onSubmitCreate(){
+    this.categoryService.createCategory(this.form.value).subscribe({
+      next: (v) =>{
+        this.swal.successMessage("Se ha creado la categoria");
+        this.getCategories();
+        this.hideModalForm();        
+      },
+      error: (e) =>{
+        this.swal.errorMessage("No se pudo crear la categoria");
+      }
+      })
+    }
+
+//aqui va el onSubmitUpdate
+  onSubmitUpdate(){}
+
+  // enableCategory(id:number){
+  //   this.categoryService.activateCategory(id).subscribe({
+  //     next: (v) => {
+  //       this.swal.successMessage("");
+  //     }
+  //   })
+
+  // }
+
+//SERVICIO,COMPOINENTE, HTML CSS
   
 }
