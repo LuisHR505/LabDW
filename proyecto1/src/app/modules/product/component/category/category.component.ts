@@ -18,13 +18,13 @@ declare var $: any;
 })
 export class CategoryComponent {
 
-  categories: Category[] = []; //aqui falta un cambio revisa si esta bien 
+  categories: Category[] = [];  
    
-  categoryUpdate= 0; //checar este error
+  categoryUpdate= 0; 
   category_id=0;
    
   form: FormGroup;
-  current_date = new Date(); // hora y fecha actual
+  current_date = new Date(); 
   loading=false;
   submitted = false;
   swal: SwalMessages = new SwalMessages(); 
@@ -143,14 +143,13 @@ export class CategoryComponent {
       })
     }
 //auxiliar
-// aux 
 
   resetVariables(){
     this.form.reset();
     this.submitted = false;
     this.category_id = 0;
   }
-//aqui va el onSubmitUpdate
+
   onSubmitUpdate(){
     this.categoryService.updateCategory(this.form.value, this.category_id).subscribe({
       next: (v) => {
