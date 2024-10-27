@@ -7,6 +7,8 @@ import { RegisterComponent } from './modules/auth/_component/register/register.c
 import { SecuredComponent } from './modules/auth/_component/secured/secured.component';
 import { authenticationGuard } from './modules/auth/authentication.guard';
 import { CategoryComponent } from './modules/product/component/category/category.component';
+import { ProductComponent } from './modules/product/component/product/product.component';
+import { ProductImageComponent } from './modules/product/component/product-image/product-image.component';
 
 export const routes: Routes = [
     {
@@ -30,6 +32,15 @@ export const routes: Routes = [
         path: 'secured',
         component: SecuredComponent, 
         canActivate: [authenticationGuard]
+    },
+    {
+        path:'product',
+        component: ProductComponent
+    },
+    {
+        path:'product/:gtin',
+        component: ProductImageComponent
     }
+
 
 ];
