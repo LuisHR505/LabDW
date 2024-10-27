@@ -126,8 +126,9 @@ constructor(
     this.form.controls['price'].setValue(String(this.product.price));
     this.form.controls['stock'].setValue(String(this.product.stock));
     this.form.controls['category'].setValue(String(this.product.category));
-    this.form.controls['category_id'].setValue(String(this.product.category_id))
-
+    this.form.controls['category_id'].setValue(this.product.category_id)
+    //esto es nuevo
+    //esto no es nuevo
      $("#modalForm").modal('show');
 
   }
@@ -142,6 +143,7 @@ constructor(
 
   //onSubmitUpdate
   onSubmitUpdate(){
+    console.log("Esto regresa el formulario: ", this.form.value, "Esta es la id del producto: ",this.product.product_id)
     this.productService.updateProduct(this.form.value,this.product.product_id).subscribe({
       next:(v) => {
         this.getProduct();
@@ -149,7 +151,7 @@ constructor(
         this.swal.successMessage(v.message);
       },
       error: (e) =>{
-        console.log("hola si entro aqui")
+        console.log("hola si entro aqui es que hubo un error")
         console.log(e);
         this.swal.errorMessage(e.error.message);
       }

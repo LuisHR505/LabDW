@@ -160,7 +160,7 @@
                                         [ngClass]="{'is-invalid': form.controls['category_id'].errors && submitted}">
                                         <option [ngValue]=null hidden>Selecciona una categoría...</option>
                                         <ng-container *ngFor="let category of categories">
-                                            <option *ngIf="category.status == 1" [ngValue]="category.category">{{
+                                            <option *ngIf="category.status == 1" [ngValue]="category.category_id">{{
                                                 category.category }}
                                             </option>
                                         </ng-container>
