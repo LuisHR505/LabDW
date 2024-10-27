@@ -11,6 +11,8 @@ import { Product } from '../../_model/product';
 //import { CategoryComponent } from '../category/category.component';
 import { SweetAlertArrayOptions } from 'sweetalert2';
 import { Category } from '../../_model/category';
+import { ProductImage } from '../../_model/product_image';
+import { NgxPhotoEditorService } from 'ngx-photo-editor';
 
 //Declarar variable global de jquery
 declare var $: any;
@@ -30,17 +32,18 @@ declare var $: any;
 export class ProductImageComponent {
   form : FormGroup;
   submitted=false;
-  productImgs=[];
+  productImgs: any[] = [];
   //checar si esto ta bien, creo que es mejor crear un objeto del topo Category
   
 
 constructor(
   private productService: ProductService,
-  private productServiceImage: ProductImageService,
+  private productImageService: ProductImageService,
   private formBuilder: FormBuilder,
   private categoryService:CategoryService,
   private route: ActivatedRoute,
-  private router: Router
+  private router: Router,
+  private ngxService: NgxPhotoEditorService
 
 ){
   this.form = this.formBuilder.group({
@@ -67,6 +70,7 @@ constructor(
     if(this.gtin){
       this.getProduct()
     }
+    
   }
 
 
@@ -76,6 +80,7 @@ constructor(
     this.productService.getProduct(this.gtin).subscribe({
       next: (v) =>{
         this.product=v;
+        this.getProductImages(this.product.product_id);
         //this.getProductImages(this.product.product_id);
       },
       error: (e) =>{
@@ -158,6 +163,63 @@ constructor(
     });
 
   }
+
+  //para las imagenes
+  getProductImages(id: number){
+    this.productImageService.getProductImage(id).subscribe({
+      next: (v) => {
+        this.productImgs = v;
+        console.log(v);
+      },
+
+      error: (e) => {
+        console.error(e);
+      }
+    });
+  }
+  
+  deleteProductImage(product_image_id: number){
+    this.productImageService.deleteProductImage(product_image_id).subscribe({
+      next: (v) => {
+        this.getProductImages(this.product.product_id);
+        this.swal.successMessage(v.message);
+      },
+      error: (e) => {
+        console.error(e);
+        this.swal.errorMessage(e.error.message);
+      }
+    });
+  }
+
+    uploadProductImage(image: string){
+      let productImage: ProductImage = new ProductImage();
+      productImage.product_id = this.product.product_id;
+      productImage.image = image;
+      this.productImageService.uploadProductImage(productImage).subscribe({
+        next: (v) => {
+          this.getProductImages(this.product.product_id);
+          this.swal.successMessage(v.message);
+        },
+        error: (e) => {
+          console.error(e);
+          this.swal.errorMessage(e.error.message);
+        }
+      });
+    }
+
+
+    fileChangeHandler($event: any) {
+      this.ngxService.open($event, {
+        aspectRatio: 1 / 1,
+        autoCropArea: 1,
+        resizeToWidth: 360,
+        resizeToHeight: 360,
+      }).subscribe(data => {
+        this.uploadProductImage(data.base64!);
+      });
+    }
+  
+  
 
   
 }

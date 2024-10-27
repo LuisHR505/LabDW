@@ -6,8 +6,8 @@ import { NgxPhotoEditorModule } from "ngx-photo-editor";
 
 
 @NgModule({
-    imports: [FormsModule, ReactiveFormsModule,CommonModule, NgxPhotoEditorModule],
-    exports: [FormsModule, ReactiveFormsModule,CommonModule, NgxPhotoEditorModule],
+    imports: [FormsModule, ReactiveFormsModule,CommonModule, NgxPhotoEditorModule,NgxPhotoEditorModule],
+    exports: [FormsModule, ReactiveFormsModule,CommonModule, NgxPhotoEditorModule,NgxPhotoEditorModule],
 })
 export class SharedModule{}
 
