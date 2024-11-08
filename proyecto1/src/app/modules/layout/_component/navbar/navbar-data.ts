@@ -14,9 +14,11 @@ export const navItems: NavItem[] = [
         displayName: 'Registro',
          route: '/register'
          
-    },
-    {
-        displayName: 'Secured',
-         route: '/secured'
-    },
+    }
+    // {
+    //     displayName: 'Secured',
+    //      route: '/secured'
+    // },
+
+    
 ]

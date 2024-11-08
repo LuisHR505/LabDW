@@ -9,13 +9,20 @@ import { authenticationGuard } from './modules/auth/authentication.guard';
 import { CategoryComponent } from './modules/product/component/category/category.component';
 import { ProductComponent } from './modules/product/component/product/product.component';
 import { ProductImageComponent } from './modules/product/component/product-image/product-image.component';
+import { HomeComponent } from './modules/layout/_component/home/home.component';
+import { CategoriaEspecificaComponent } from './modules/product/component/categoria-especifica/categoria-especifica.component';
+import { CustomerProductComponent } from './modules/product/component/customer-product/customer-product.component';
+
 
 export const routes: Routes = [
     {
-        path: '',
-        redirectTo: '/category',
-        pathMatch: 'full'
-    },
+         path: '', component: HomeComponent 
+    }, 
+    // {
+    //     path: '',
+    //     redirectTo: '/category',
+    //     pathMatch: 'full'
+    // },
     {
         path: 'category',
         component: CategoryComponent
@@ -40,6 +47,14 @@ export const routes: Routes = [
     {
         path:'product/:gtin',
         component: ProductImageComponent
+    },
+    {
+        path:'product/category/:id',
+        component: CategoriaEspecificaComponent 
+    },
+    {
+        path:'customerProduct/:gtin',
+        component:CustomerProductComponent 
     }
 
 

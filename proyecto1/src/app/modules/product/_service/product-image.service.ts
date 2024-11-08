@@ -16,11 +16,10 @@ export class ProductImageService {
     return this.http.post<any>(api_dwb_uri+this.source,product_image)
   }
 
-  //falta implementar
   getProductImage(product_id:number):Observable <any>{
     return this.http.get<ProductImage>(api_dwb_uri+this.source+"/"+product_id)
   }
-  //falta implementar el delete
+  
   deleteProductImage(product_image_id:number):Observable<any>{
     return this.http.delete<any>(api_dwb_uri+this.source+"/"+product_image_id)
   }
