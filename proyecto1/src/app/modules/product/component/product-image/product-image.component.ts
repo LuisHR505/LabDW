@@ -18,8 +18,6 @@ import { NgxPhotoEditorService } from 'ngx-photo-editor';
 declare var $: any;
 
 
-//import { SharedModule } from '../../../../shared/shared-module';
-
 @Component({
   selector: 'app-product-image',
   standalone: true,
@@ -33,7 +31,6 @@ export class ProductImageComponent {
   form : FormGroup;
   submitted=false;
   productImgs: any[] = [];
-  //checar si esto ta bien, creo que es mejor crear un objeto del topo Category
   
 
 constructor(
@@ -62,7 +59,6 @@ constructor(
   gtin: any
   product: Product =new Product();
   swal: SwalMessages =  new SwalMessages();
-  //categories: any; //revisar si esto esta bien
   categories: Category[] = []; 
 
   ngOnInit(){
@@ -81,7 +77,6 @@ constructor(
       next: (v) =>{
         this.product=v;
         this.getProductImages(this.product.product_id);
-        //this.getProductImages(this.product.product_id);
       },
       error: (e) =>{
         this.swal.errorMessage(e.error.message)
@@ -122,7 +117,6 @@ constructor(
   updateProduct(){
     this.form.reset();
     this.submitted=false;
-    //$("#modalForm").modal('show');
     this.getCategories();
 
     this.form.controls['product'].setValue(this.product.product);
@@ -132,8 +126,6 @@ constructor(
     this.form.controls['stock'].setValue(String(this.product.stock));
     this.form.controls['category'].setValue(String(this.product.category));
     this.form.controls['category_id'].setValue(this.product.category_id)
-    //esto es nuevo
-    //esto no es nuevo
      $("#modalForm").modal('show');
 
   }

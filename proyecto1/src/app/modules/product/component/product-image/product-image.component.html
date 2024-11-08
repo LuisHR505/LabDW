@@ -7,8 +7,6 @@
                     Regresar
                 </span>
             </div> 
-            
-            <!-- hasta aqui bien (funcionalidad del regresar) -->
             <div class="col-md">
                 <span class="btn edit-product" (click)="updateProduct()">
                     <!-- (click)="updateProduct()" -->
@@ -18,127 +16,123 @@
             </div>
         </div>
     </div>
-    <br>
-    <!-- hasta aqui bien (funcionalidad de update solo falta que guarde bien)-->
-
-
-    <!-- aqui viene el carrusel -->
-                <!-- product image  -->
-
-                <div class="col-md-4">
-                    <div class="card">
-                        <div *ngIf="productImgs.length > 1" id="carouselExampleIndicators" class="carousel slide"
-                            data-bs-ride="true">
-                            <div class="carousel-indicators">
-                                <button *ngFor="let item of productImgs; let i = index" type="button" class="indicator"
-                                    data-bs-target="#carouselExampleIndicators" [attr.data-bs-slide-to]="i"
-                                    [class.active]="i === 0" [attr.aria-current]="i === 0"
-                                    [attr.aria-label]="'Slide ' + i"></button>
-                            </div>
-                            <div class="carousel-inner">
-                                <div *ngFor="let prod of productImgs; let i = index" class="carousel-item"
-                                    [class.active]="i === 0">
-                                    <div class="carousel-del">
-                                        <a (click)="deleteProductImage(prod.product_image_id)" class="trash"><i class="fas fa-trash-alt cursor-pointer"></i></a>
-                                    </div>
-                                    <!-- image  -->                                                                                                
-                                    <div class="card-body-customer text-center">
-                                        <img src="{{ prod.image !== '' ? prod.image : 'assets/no-product-image.png'}}"
-                                            class="d-block w-100 customer-image" alt="...">
-                                    </div>
-                                </div>
-                            </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-                                data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-                                data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>
+    <br>  
+            <!-- product data  -->
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div *ngIf="productImgs.length > 1" id="carouselExampleIndicators" class="carousel slide"
+                data-bs-ride="true">
+                <div class="carousel-indicators">
+                    <button *ngFor="let item of productImgs; let i = index" type="button" class="indicator"
+                        data-bs-target="#carouselExampleIndicators" [attr.data-bs-slide-to]="i"
+                        [class.active]="i === 0" [attr.aria-current]="i === 0"
+                        [attr.aria-label]="'Slide ' + i"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div *ngFor="let prod of productImgs; let i = index" class="carousel-item"
+                        [class.active]="i === 0">
+                        <div class="carousel-del">
+                            <a (click)="deleteProductImage(prod.product_image_id)" class="trash"><i class="fas fa-trash-alt cursor-pointer"></i></a>
                         </div>
-                        <div *ngIf="productImgs.length <= 1" id="carouselExampleIndicators" class="carousel slide"
-                            data-ride="carousel">                        
-                            <div class="carousel-inner">                            
-                                <div *ngIf="productImgs.length == 0" class="carousel-item active">                                                                
-                                    <img src="/assets/no-product-image.png" alt="No product image available">
-                                </div>
-                                <div *ngFor="let prod of productImgs" class="carousel-item active">
-                                    <div class="carousel-del">
-                                        <a (click)="deleteProductImage(prod.product_image_id)" class="trash"><i class="fas fa-trash-alt cursor-pointer"></i></a>
-                                    </div>
-                                    <img src="{{ prod.image !== '' ? prod.image : '/assets/no-product-image.png'}}" class="d-block w-100" alt="...">                                                                     
-                                </div>
-                            </div>
-                        </div>
-                        <div class="edit-product-image text-center">
-                            <label for="uploadImage" class="cursor-pointer">
-                                <input type="file" (change)="fileChangeHandler($event)" id="uploadImage"
-                                    style="display:none">
-                                <i class="ph ph-note-pencil icon-text-button"></i>
-                                <p class="item-txt"> Editar imagen </p>
-                            </label>
+                        <!-- image  -->                                                                                                
+                        <div class="card-body-customer text-center">
+                            <img src="{{ prod.image !== '' ? prod.image : 'assets/no-product-image.png'}}"
+                                class="d-block w-100 customer-image" alt="...">
                         </div>
                     </div>
                 </div>
-    
-
-    <!-- ya actualiza la informacion no mover -->
-     <!-- product image  -->
-
-    <!-- lo del product data de momento esta bien -->
-    
-            <!-- product data  -->
-
-            <div class="col-md-8 ">
-                <div class="card">
-                    <div class="card-body-product">
-
-                        <!-- product -->
-
-                        <div class="product-title">
-                            {{ product.product }}
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+            <div *ngIf="productImgs.length <= 1" id="carouselExampleIndicators" class="carousel slide"
+                data-ride="carousel">                        
+                <div class="carousel-inner">                            
+                    <div *ngIf="productImgs.length == 0" class="carousel-item active">                                                                
+                        <img src="/assets/no-product-image.png" alt="No product image available">
+                    </div>
+                    <div *ngFor="let prod of productImgs" class="carousel-item active">
+                        <div class="carousel-del">
+                            <a (click)="deleteProductImage(prod.product_image_id)" class="trash"><i class="fas fa-trash-alt cursor-pointer"></i></a>
                         </div>
-
-                        <table class="table">
-                            <tbody>
-
-                                <!-- gtin -->
-                                <tr>
-                                    <th class="col-md-4">GTIN</th>
-                                    <td>{{ product.gtin }}</td>
-                                </tr>
-
-                                <!-- description -->
-                                <tr>
-                                    <th class="col-md-4">Descripción</th>
-                                    <td>{{ product.description }}</td>
-                                </tr>
-
-                                <!-- price -->
-                                <tr>
-                                    <th class="col-md-4">Precio</th>
-                                    <td>{{ product.price }}</td>
-                                </tr>
-
-                                <!-- stock -->
-                                <tr>
-                                    <th class="col-md-4">Stock</th>
-                                    <td>{{ product.stock }}</td>
-                                </tr>
-
-                                <!-- category_id -->
-                                <tr>
-                                    <th class="col-md-4">Categoría</th>
-                                    <td>{{ product.category }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <img src="{{ prod.image !== '' ? prod.image : '/assets/no-product-image.png'}}" class="d-block w-100" alt="...">                                                                     
                     </div>
                 </div>
             </div>
+            <div class="edit-product-image text-center">
+                <label for="uploadImage" class="cursor-pointer">
+                    <input type="file" (change)="fileChangeHandler($event)" id="uploadImage"
+                        style="display:none">
+                    <i class="ph ph-note-pencil icon-text-button"></i>
+                    <p class="item-txt"> Editar imagen </p>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-8 ">
+        <div class="card">
+            <div class="card-body-product">
+
+                <!-- product -->
+
+                <div class="product-title">
+                    <th>
+                        {{ product.product }}
+                    </th>
+                    
+                </div>
+
+                <table class="table">
+                    <tbody>
+
+                        <!-- gtin -->
+                        <tr>
+                            <th class="col-md-4">GTIN</th>
+                            <td>{{ product.gtin }}</td>
+                        </tr>
+
+                        <!-- description -->
+                        <tr>
+                            <th class="col-md-4">Descripción</th>
+                            <td>{{ product.description }}</td>
+                        </tr>
+
+                        <!-- price -->
+                        <tr>
+                            <th class="col-md-4">Precio</th>
+                            <td>{{ product.price }}</td>
+                        </tr>
+
+                        <!-- stock -->
+                        <tr>
+                            <th class="col-md-4">Stock</th>
+                            <td>{{ product.stock }}</td>
+                        </tr>
+
+                        <!-- category_id -->
+                        <tr>
+                            <th class="col-md-4">Categoría</th>
+                            <td>{{ product.category }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
 
              <!-- Modal form -->
 
