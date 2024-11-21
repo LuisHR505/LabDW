@@ -2,6 +2,7 @@
 @charset "UTF-8";
 /*Estilo sobre-escrito por mi*/
 .body-content{
+  padding-top: 70px;
   max-width: 1280px;
   margin: auto;
   margin-top: 16px;
@@ -11,6 +12,111 @@
   max-width: 1280px;
   margin: auto;
 }
+
+.form-button{
+  margin: 24px;
+  text-align: center;
+}
+ 
+.btn-save{
+  width: 240px;
+}
+.input-error-message{
+  color: red;
+  margin: 4px;
+}
+
+/* agregado en practica 7 */
+.input-required{
+  color: red;
+}
+.input-error-message{
+  color: red;
+  margin: 4px;
+}
+
+/* images  */
+
+.img-loading{
+  width: 100px;
+  height: 100px;
+}
+
+/* tables  */
+
+.td-status-disable{
+  color: red;
+}
+.table-empty{
+  padding: 24px;
+}
+
+
+
+/* ul dropdown  */
+
+.dropdown-button{
+  border: none;
+  border-radius: 5px;
+  background-color: white;
+}
+
+.dropdown-item{
+  color: rgb(255, 255, 255) !important;
+  cursor: pointer;
+}
+
+.dropdown-item:hover{
+  color: white !important;
+}
+
+.enable-item{
+  color: blue !important;
+}
+
+.disable-item{
+  color: red !important;
+}
+
+.icon-text-ul{
+  font-size: 14px;
+  margin-right: 8px;
+}
+
+/* swal messages  */
+
+
+.swal-title{
+  font-size: 24px;
+}
+
+
+.swal-icon{
+  font-size: 12px;
+}
+
+
+.swal-cancel-button{
+  width: 120px;
+  margin: 12px;
+}
+
+
+.swal-confirm-button{
+  width: 120px;
+  margin: 12px;
+}
+
+.btn-return{
+  cursor: pointer;
+  margin: 4px 0px 8px 0px !important;
+}
+
+
+.btn-return:hover{
+  color: blue;
+}
+
 
 /*ayudita de bootswatch*/
 /*!
