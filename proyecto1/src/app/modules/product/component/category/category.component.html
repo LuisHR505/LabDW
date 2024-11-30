@@ -1,0 +1,130 @@
+<div class="body-content">
+    <div class="card">
+      <div class="card-header">
+        <h4>Categorias</h4>
+        <!-- boton -->
+        <div class="row">
+          <div class="col">
+            <button type="button" class="btn btn-primary btn-new" (click)="showModalForm()">
+              Nueva categoria
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+
+         <!-- loading  -->
+        
+        @if(loading) {
+          <div class="text-center" >
+            <img src="assets/loading.gif" class="img-loading" alt="loading">
+          </div>
+        }
+        
+        @if(!loading && categories.length == 0){
+          <div class="text-center table-empty">
+              <h4>No cuentas con regiones registradas</h4>
+          </div>
+        }@else {
+          <table class="table table-striped">
+            <thead>
+              <tr class="table-primary">
+                <th scope="col">No.</th>
+                <th scope="col">Categoria</th>
+                <th scope="col">Tag</th>
+                <th scope="col">Estatus</th>
+                <th scope="col">Más</th>
+              </tr>
+            </thead> 
+            <tbody>
+              @for(category of categories; track category.category_id; let i = $index) {
+                  <tr>
+                      <td>{{ i + 1 }}</td>
+                      <td>{{ category.category }}</td>
+                      <td>{{ category.tag }}</td>
+                      <td>
+                          @if (category.status == 1) {
+                              {{ "Activo" }}
+                          }@else {
+                              <span class="td-status-disable">{{ "Inactivo" }}</span> 
+                          }
+                      </td> 
+                      <td>
+                        <div class="dropdown">
+                          <!-- dots button  -->
+                          <button class="dropdown-button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="ph ph-dots-three-outline-vertical icon-menu"></i>
+                          </button>
+      
+      
+                          <!-- menu options -->
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" (click)="updateCategory(category)">
+                              <i class="ph ph-note-pencil icon-text-ul"></i>Editar
+                            </a>
+                            @if (category.status == 0) {
+                              <a class="dropdown-item enable-item" (click)="enableCategory(category.category_id)">
+                                <i class="ph ph-check-circle icon-text-ul"></i>Activar
+                              </a>
+                            }
+                            @if (category.status == 1) {
+                              <a class="dropdown-item disable-item" (click)="disableCategory(category.category_id)">
+                                <i class="ph ph-x-circle icon-text-ul"></i>Desactivar
+                              </a>
+                            }
+                          </div>
+                        </div>
+                      </td>
+                  </tr>
+              }
+              
+            </tbody>
+          </table>
+        }
+           
+        
+      </div>
+      <div class="card-footer text-end">
+        <small>{{ current_date | date: 'dd/MMM/yyyy, h:mm a' }}</small>
+      </div>
+    </div>
+  </div>
+
+      <!-- modal -->
+      <div class="modal fade" tabindex="-1" data-bs-backdrop="static" id="modalForm">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Ingresar datos</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <!-- formulario -->
+              <form  [formGroup]="form"  (ngSubmit)="onSubmit()">
+                <div class="mb-3">
+                  <label for="category" class="form-label">Categoria <span class="input-required">*</span></label>
+                  <input type="text" class="form-control" formControlName="category" placeholder="Nombre de la categoria" [ngClass]="{'is-invalid': form.controls['category'].errors && submitted}">
+                  @if (form.controls['category'].errors && submitted) {
+                    <small class="input-error-message">Favor de ingresar un nombre de categoria válido</small>
+                  }
+               
+                </div>
+                <div class="mb-3">
+                  <label for="tag" class="form-label">Tag <span class="input-required">*</span></label>
+                  <input type="text" class="form-control" formControlName="tag" placeholder="Código de la categoria" [ngClass]="{'is-invalid': form.controls['tag'].errors && submitted}">
+                  @if (form.controls['tag'].errors && submitted) {
+                    <small class="input-error-message">Favor de ingresar un codigo de categoria válido</small>
+                  }
+               
+                </div>
+                <div class="form-button">
+                  <button type="submit" class="btn btn-primary btn-save">Guardar</button>
+                </div>              
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
