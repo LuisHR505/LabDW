@@ -118,8 +118,8 @@
         <div class="cart-button">
             <button class="quantity-btn" (click)="decreaseQuantity()">-</button>
             <span>{{ quantity }}</span>
-            <button class="quantity-btn" (click)="increaseQuantity()">+</button>
-            <button class="add-to-cart">Añadir al carrito</button>
+            <button class="quantity-btn" (click)="increaseQuantity(product.stock)">+</button>
+            <button class="add-to-cart"(click)="agregarAlCarrito(product.gtin,quantity)">Añadir al carrito</button>
           </div>
           
          

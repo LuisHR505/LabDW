@@ -1,0 +1,68 @@
+<div class="body-content">
+  <div class="card">
+    <div class="card-header">
+      <h4>Carrito de Compras</h4>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <!-- Tabla del carrito -->
+        <div class="col-md-8">
+          <table class="table table-striped">
+            <thead>
+              <tr class="table-primary">
+                <th scope="col">Imagen del producto</th>
+                <th scope="col">Nombre del producto</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Total</th>
+                <th scope="col">Más</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let producto of carritoProductos">
+                <td><img [src]="producto.image" alt=""></td>
+                <td>{{producto.product.product}}</td>
+                <td>${{producto.product.price}}</td>
+                <td>{{producto.quantity}}</td>
+                <td class="negrita">${{subtotal(producto.quantity, producto.product.price)}}</td>
+                <td>
+                  <button class="btn btn-danger" (click)="deleteProductCart(producto.cart_id)">Eliminar</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <!-- Botón para vaciar carrito -->
+          <div class="mt-3">
+            <button class="btn btn-danger btn-block" (click)="deleteCart()" >Vaciar Carrito</button>
+          </div>
+        </div>
+
+        <!-- Nueva tabla a la derecha -->
+        <div class="col-md-4">
+          <table class="table">
+            <tbody>
+              <tr>
+                <td>Subtotal</td>
+                <td>${{subTotalCarrito()}}</td>
+              </tr>
+              <tr>
+                <td>Descuentos</td>
+                <td>$0.00</td>
+              </tr>
+              <tr>
+                <td>Costo de Envío</td>
+                <td>$0.00</td>
+              </tr>
+              <tr>
+                <td>Total</td>
+                <td class="negrita">${{subTotalCarrito()}}</td>
+              </tr>
+                <button class="btn btn-success vaciar-btn btn-block ancho" (click)="generateInvoice()">Comprar</button>
+            </tbody>
+          </table>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

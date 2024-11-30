@@ -12,6 +12,12 @@ import { ProductImageComponent } from './modules/product/component/product-image
 import { HomeComponent } from './modules/layout/_component/home/home.component';
 import { CategoriaEspecificaComponent } from './modules/product/component/categoria-especifica/categoria-especifica.component';
 import { CustomerProductComponent } from './modules/product/component/customer-product/customer-product.component';
+import { ProductCartComponent } from './modules/product/component/product-cart/product-cart.component';
+import { InvoiceComponent } from './modules/invoice/component/invoice/invoice.component';
+import { InvoiceDetailComponent } from './modules/invoice/component/invoice-detail/invoice-detail.component';
+import { CustomerComponent } from './modules/customer/component/customer/customer.component';
+import { CustomerImageComponent } from './modules/customer/component/customer-image/customer-image.component';
+import { RegionComponent } from './modules/customer/component/region/region.component';
 
 
 export const routes: Routes = [
@@ -55,7 +61,33 @@ export const routes: Routes = [
     {
         path:'customerProduct/:gtin',
         component:CustomerProductComponent 
-    }
+    },
+
+    {
+         path: 'product-cart', component: ProductCartComponent 
+    },
+    {
+         path: 'invoice', component:  InvoiceComponent
+    },
+    {
+         path: 'invoice-detail/:id', component:  InvoiceDetailComponent
+    },
+    {
+        path: 'customer',
+        component: CustomerComponent
+        //canActivate: [adminGuard]
+    },
+    {
+        path: 'customer/:rfc',
+        component: CustomerImageComponent
+        //canActivate: [authGuard]
+    },
+    {
+        path: 'region',
+        component: RegionComponent
+    },
+
+
 
 
 ];

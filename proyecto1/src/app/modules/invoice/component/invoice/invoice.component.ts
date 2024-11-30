@@ -45,6 +45,10 @@ export class InvoiceComponent {
   }
 
   showInvoice(id: number){
-    this.router.navigate(['invoice/' + id]);
+    this.router.navigate(['invoice-detail/' + id]);
+  }
+  //redirect
+  redirect(){
+    this.router.navigate(['/']);
   }
 }

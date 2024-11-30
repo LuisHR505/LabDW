@@ -17,5 +17,4 @@ export class CaterogriaEspecificaService {
   getCategoryProducts(id:number): Observable<any>{
     return this.http.get(api_dwb_uri + this.source + id);
   }
-
 }

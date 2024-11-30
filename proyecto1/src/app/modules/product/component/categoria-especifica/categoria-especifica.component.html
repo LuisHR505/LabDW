@@ -1,12 +1,14 @@
 <div class="container margen">
+    <h1>{{categoria.category}} disponibles en la tienda: </h1>
     <div class="row">
       <!-- Verifica que haya productos antes de mostrar el listado -->
        <div *ngIf="productos.length > 0; else noProductos">
+         
         <div *ngFor="let producto of productos" class="col-md-4 mb-4">
+          <h1>{{producto.category}} </h1>
           <div class="card h-100">
             <!-- Imagen del producto (asegúrate de que el objeto producto tenga la propiedad `imagen`) -->
-             <!-- <img [src]="producto.image" class="card-img-top" alt="imagen de {{ producto.product }}">
-   -->      
+             <!-- <img [src]="producto.image" class="card-img-top" alt="imagen de {{ producto.product }}" creo que tengo un bug en la linea de abajo>-->      
             <img *ngIf="producto.image !='data:image/png;base64,'; else noImage" [src]="producto.image" class="card-img-top" alt="imagen de {{ producto.product }}">
             <ng-template #noImage>
                 <img src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" class="card-img-top" >

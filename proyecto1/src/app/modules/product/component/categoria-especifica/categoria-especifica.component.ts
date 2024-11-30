@@ -6,6 +6,10 @@ import { Product } from '../../_model/product';
 import { ProductImage } from '../../_model/product_image';
 import { SwalMessages } from '../../../../shared/swal-messages';
 import { Router } from '@angular/router';
+import { CategoryComponent } from '../category/category.component';
+import { CategoryService } from '../../_service/category.service';
+import { Category } from '../../_model/category';
+
 @Component({
   selector: 'app-categoria-especifica',
   standalone: true,
@@ -17,12 +21,15 @@ export class CategoriaEspecificaComponent {
 
     constructor(private categoriaEspecificaS:CaterogriaEspecificaService,
       private route: ActivatedRoute,
-      private router: Router
+      private router: Router,
+      // private categoria: CategoryComponent,
+      private categoriaServicio:CategoryService
     ){
     }
     productos: any []=[]
     swal: SwalMessages = new SwalMessages();
     categoriaId: number = 0
+    categoria: any
     
     // ngOnInit(): void {
     //   this.getProductosByCategoria();
@@ -31,12 +38,31 @@ export class CategoriaEspecificaComponent {
       // Obtiene el ID de la categoría de los parámetros de la ruta
       this.route.paramMap.subscribe(params => {
         const id = params.get('id');
+        
         if (id) {
           this.categoriaId = +id; // Convierte el ID a número
           this.getProductosByCategoria(this.categoriaId);
+          this.getCategory(this.categoriaId)
         }
       });
+      
+
     }
+
+  getCategory(categoriaId:number){
+    this.categoriaServicio.getCategory(categoriaId).subscribe({
+      next: (v) =>{
+        this.categoria=v
+        console.log(this.categoria)
+        //borrar luego
+      },
+      error: (e) => {
+        this.swal.errorMessage("No hay un listado de categorias")
+      }
+
+    });
+
+  }
 
   getProductosByCategoria(categoriaId:number){
     this.categoriaEspecificaS.getCategoryProducts(categoriaId).subscribe({

@@ -2,7 +2,7 @@ import { NavItem } from './nav-item/nav-item';
 
 export const navItems: NavItem[] = [
     {
-        displayName: 'category',
+        displayName: 'Category',
          route: '/category',         
     },
     {
@@ -14,7 +14,22 @@ export const navItems: NavItem[] = [
         displayName: 'Registro',
          route: '/register'
          
-    }
+    },
+    {
+        displayName: 'Clientes',
+         route: '/customer'
+         
+    },
+    // {
+    //     displayName: 'Productos',
+    //      route: '/product'
+         
+    // }
+    // {
+    //     displayName: 'Carrito',
+    //      route: '/product-cart'
+         
+    // }
     // {
     //     displayName: 'Secured',
     //      route: '/secured'

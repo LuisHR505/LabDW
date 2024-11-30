@@ -1,1 +1,67 @@
-<p>Revisa en la consola el detalle de la factura :)</p>
+   <div class="body-content">
+    <div class="col-md">
+        <span class="btn-return" (click)="redirect()">
+            <i class="ph ph-arrow-circle-left icon-text-button"></i>
+            Regresar
+        </span>
+    </div> 
+    <div class="row">
+        <div class="col-md">
+    <div class="card">
+      <div class="card-header">
+        <h4>Detalles de la Factura</h4>
+      </div>
+      <div class="card-body">          
+          
+        <div class="row">
+          
+          <div class="col-md">
+            <table class="table table-striped">
+              <thead>
+                <tr class="table-primary">
+                  <th scope="col">No.</th>
+                  <th scope="col">GTIN</th>
+                  <th scope="col">Cantidad</th>
+                  <th scope="col">Clave Unidad</th>
+                  <th scope="col">Unidad</th>
+                  <th scope="col">Costo unitario</th>
+                  <th scope="col">Subtotal</th>
+                  <th scope="col">Impuestos</th>
+                  <th scope="col">Importe total</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of invoice.items">
+                  <td>{{item.invoice_id}}</td>
+                  <td>{{item.gtin}}</td>
+                  <td>{{item.quantity}}</td>
+                  <td>{{item.item_id}}</td>
+                  <td>Piezas</td>
+                  <td>${{item.unit_price}}</td>
+                  <td>${{item.subtotal}}</td>
+                  <td>${{item.taxes}}</td>
+                  <td>${{item.total}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        
+        <div class="card mt-4 col-auto ml-auto derecha">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-12">
+                <p><strong>Subtotal:</strong> ${{invoice.subtotal}}</p>
+                <p><strong>Impuestos:</strong> ${{invoice.taxes}}</p>
+                <p><strong>Total:</strong> ${{invoice.total}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  
+
+  
