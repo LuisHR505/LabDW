@@ -1,0 +1,16 @@
+.marginT{
+    margin-top: 10%;
+}
+img{
+    max-width: 20%;
+}
+.vaciar-btn{
+    position: absolute;
+    right: 10px;
+}
+.negrita{
+    font-weight: bold;
+}
+.ancho{
+    width: 31.7%;
+}
